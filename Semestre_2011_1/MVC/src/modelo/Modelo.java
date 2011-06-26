@@ -20,6 +20,7 @@ public class Modelo {
 	}
 	
 	public void anyadirFigura(Figura f){
+	
 		listaFiguras.add(f);
 	}
 	
@@ -31,5 +32,17 @@ public class Modelo {
 			}
 		}
 		return null;
+	}
+	/*Metodo para especificar los dibujos que son paleta*/
+	public void darpaleta(){
+		int cont=0;
+		for (Figura elemento : getListado()) {
+			if(cont<1){
+				elemento.setEspaleta(true);
+							
+			}
+			cont++;
+		}
+		
 	}
 }

@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import vista.Vista;
 import modelo.Circulo;
 import modelo.Cuadrado;
+import modelo.DibujoT;
 import modelo.Figura;
 import modelo.Modelo;
 
@@ -16,11 +17,17 @@ public class Controlador {
 	private Modelo modelo;
 	private Vista vista;
 	private Figura seleccionada;
-	
+	private Point punto;
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
+		punto= new Point(10,10);
+		
+		
+		/*Paleta de figuras by Andrelopez*/
+		this.anyadirFigura(new DibujoT(punto,150,40));
+		modelo.darpaleta();
 	}
 	
 	public Figura obtenerFigura(Point posicion){
@@ -54,8 +61,8 @@ public class Controlador {
 	public void eVmousePressed(MouseEvent ev) {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
-		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
-			this.anyadirFigura(new Cuadrado(ev.getPoint(),40));			
+		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo Dibujo T
+			this.anyadirFigura(new DibujoT(ev.getPoint(),150,40));			
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
 			this.anyadirFigura(new Circulo(ev.getPoint(),40));
@@ -66,8 +73,14 @@ public class Controlador {
 	public void eVmouseDragged(MouseEvent ev) {
 		if(seleccionada!=null){
 			//El movimiento puede ser mas fluido recalculando el pto
-			this.cambiarPosicion(seleccionada, ev.getPoint());
-			vista.repaint();
+			
+			/*Verificamos que no sea de la paleta si no muevase!*/
+			if(!seleccionada.getEspaleta())
+			{
+				this.cambiarPosicion(seleccionada, ev.getPoint());
+				vista.repaint();
+				
+			}
 		}
 	}
 

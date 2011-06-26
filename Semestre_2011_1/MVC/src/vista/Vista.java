@@ -1,12 +1,16 @@
 package vista;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
 
 import modelo.Modelo;
 import modelo.Figura;
@@ -19,6 +23,7 @@ import controlador.Controlador;
 public class Vista extends JPanel {
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
+	private int posini=100;
 	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
 	
 	public Vista(Dimension size, Modelo modelo){
@@ -26,7 +31,7 @@ public class Vista extends JPanel {
 		this.modelo=modelo;
 		
 		setPreferredSize(size);
-		setBackground(Color.white);
+		setBackground(Color.gray);
 		setFocusable(true);
 
 		//Mejorable al 1000% solo por simplificacion realizado de esta forma
@@ -56,6 +61,14 @@ public class Vista extends JPanel {
 		for (Figura elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
+	
+
+		g.setStroke(new BasicStroke(10f)); //Grosor de 10 pixeles
+		g.setColor(Color.darkGray);
+	
+		g.fill3DRect(0, posini, 200, 5, true);
+		
+		
 	}
 
 	public void eVmousePressed(MouseEvent ev) {
