@@ -7,6 +7,7 @@ import java.awt.Point;
 public class Cuadrado extends Figura {
 
 	private int ancho;
+	private int alto;
 	public Cuadrado(Point posicion, int ancho){
 		this.posicion=posicion;
 		this.ancho=ancho;
