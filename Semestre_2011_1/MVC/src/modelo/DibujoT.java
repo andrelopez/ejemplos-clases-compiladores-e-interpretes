@@ -44,16 +44,17 @@ public class DibujoT extends Figura{
 	@Override
 	public void dibujar(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getAlto());
-		g.fillRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto(), this.getAlto());
+		g.fill3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
+		g.fill3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
 		/*Borde para separar*/
 		g.setColor(Color.BLACK);
-		g.drawRect(this.getX(), this.getY(), this.getAncho(), this.getAlto());
-		g.drawRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto(), this.getAlto());
+		g.draw3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
+		g.draw3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
 		
 		if(this.getSeleccionada()){
 			g.setColor(Color.RED);
-			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAlto()-20);
+			g.draw3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
+			g.draw3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
 		}
 	}
 

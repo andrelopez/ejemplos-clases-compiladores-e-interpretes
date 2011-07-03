@@ -6,14 +6,19 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Line2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 import modelo.Modelo;
 import modelo.Figura;
+
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 
@@ -26,6 +31,7 @@ public class Vista extends JPanel {
 	private int posini=100;
 	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
 	
+	Image image1;
 	public Vista(Dimension size, Modelo modelo){
 		super();
 		this.modelo=modelo;
@@ -49,6 +55,13 @@ public class Vista extends JPanel {
 		};
 		this.addMouseListener(mouseControl);
 		this.addMouseMotionListener(mouseControl);
+		
+		try { 
+    		image1 = ImageIO.read(new File("image/menu.png")); }
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -61,12 +74,17 @@ public class Vista extends JPanel {
 		for (Figura elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
-	
+		
+		 g.drawImage(image1,0,0,null);
+			
 
 		g.setStroke(new BasicStroke(10f)); //Grosor de 10 pixeles
 		g.setColor(Color.darkGray);
 	
-		g.fill3DRect(0, posini, 200, 5, true);
+		g.fill3DRect(0, posini-51, 100, 5, true);
+		g.fill3DRect(0, posini, 100, 5, true);
+		
+		 g.drawImage(image1,0,0,null);
 		
 		
 	}

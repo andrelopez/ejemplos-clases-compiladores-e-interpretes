@@ -32,11 +32,25 @@ public class Circulo extends Figura {
 
 	@Override
 	public void dibujar(Graphics g) {
-		g.setColor(Color.ORANGE);
-		g.fillOval(this.getX(), this.getY(), this.getRadio(), this.getRadio());
+		float punto=this.getRadio()/1.5f;
+		g.setColor(Color.WHITE);
+		/*Dibujando el programa*/
+		g.fill3DRect(this.getX(), this.getY(), this.getRadio(), this.getRadio(),true);
+		g.fillOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
+	
+		
+		g.setColor(Color.BLACK);
+		g.drawRect(this.getX(), this.getY(), this.getRadio(), this.getRadio());
+		//g.drawOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
+		
+		
 		if(this.getSeleccionada()){
-			g.setColor(Color.CYAN);
-			g.drawOval(this.getX()+7, this.getY()+7, this.getRadio()-20, this.getRadio()-20);
+			g.setColor(Color.red);
+			g.draw3DRect(this.getX(), this.getY(), this.getRadio(), this.getRadio(),true);
+		//	g.drawOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
+		
+			
+			
 		}
 	}
 

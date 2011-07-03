@@ -22,11 +22,11 @@ public class Controlador {
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
-		punto= new Point(10,10);
+		punto= new Point(10,57);
 		
 		
 		/*Paleta de figuras by Andrelopez*/
-		this.anyadirFigura(new DibujoT(punto,150,40));
+		this.anyadirFigura(new DibujoT(punto,90,20));
 		modelo.darpaleta();
 	}
 	
