@@ -21,7 +21,9 @@ public class DibujoT extends Figura{
 	 * probando 
 	 * probando
 	 * 1, 2 ,3 
-	 * probando*/
+	 * probando
+	 * probando 4 ,5 ,6
+	 * */
 	
 	public void setAncho(int ancho){
 		this.ancho=ancho;
