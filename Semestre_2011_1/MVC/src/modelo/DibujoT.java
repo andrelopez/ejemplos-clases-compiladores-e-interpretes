@@ -7,6 +7,7 @@ import java.awt.Color;
 public class DibujoT extends Figura{
 
 	/*Clase que sirver para dibujar T*/
+	/*Ojala y sirva!!*/
 
 	private int ancho;
 	private int alto;
