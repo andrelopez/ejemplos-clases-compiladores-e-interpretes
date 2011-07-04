@@ -17,6 +17,12 @@ public class DibujoT extends Figura{
 		this.seleccionada=false;  
 	}
 	
+	/*
+	 * probando 
+	 * probando
+	 * 1, 2 ,3 
+	 * probando*/
+	
 	public void setAncho(int ancho){
 		this.ancho=ancho;
 	}
