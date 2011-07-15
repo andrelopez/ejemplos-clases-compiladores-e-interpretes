@@ -18,14 +18,6 @@ public class DibujoT extends Figura{
 		this.seleccionada=false;  
 	}
 	
-	/*
-	 * probando 
-	 * probando
-	 * 1, 2 ,3 
-	 * probando
-	 * probando 4 ,5 ,6
-	 * */
-	
 	public void setAncho(int ancho){
 		this.ancho=ancho;
 	}
@@ -56,7 +48,7 @@ public class DibujoT extends Figura{
 		g.fill3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
 		g.fill3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
 		/*Borde para separar*/
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.draw3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
 		g.draw3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
 		

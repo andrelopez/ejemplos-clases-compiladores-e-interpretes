@@ -24,7 +24,7 @@ public class Figuras {
 			frame.setVisible(true);
 			Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
 			fullscreen.width=fullscreen.width-400;
-			fullscreen.height=fullscreen.height-400;
+			fullscreen.height=fullscreen.height-280;
 			frame.setBounds(50,50,fullscreen.width,fullscreen.height);
 			frame.getContentPane().setPreferredSize(fullscreen);
 			frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);

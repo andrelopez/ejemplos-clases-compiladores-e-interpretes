@@ -10,6 +10,7 @@ import modelo.Circulo;
 import modelo.Cuadrado;
 import modelo.DibujoT;
 import modelo.Figura;
+import modelo.MVirtual;
 import modelo.Modelo;
 
 public class Controlador {
@@ -24,10 +25,6 @@ public class Controlador {
 		seleccionada=null;
 		punto= new Point(10,57);
 		
-		
-		/*Paleta de figuras by Andrelopez*/
-		this.anyadirFigura(new DibujoT(punto,90,20));
-		modelo.darpaleta();
 	}
 	
 	public Figura obtenerFigura(Point posicion){
@@ -62,7 +59,7 @@ public class Controlador {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo Dibujo T
-			this.anyadirFigura(new DibujoT(ev.getPoint(),150,40));			
+			this.anyadirFigura(new MVirtual(ev.getPoint(),80));			
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
 			this.anyadirFigura(new Circulo(ev.getPoint(),40));
@@ -73,14 +70,8 @@ public class Controlador {
 	public void eVmouseDragged(MouseEvent ev) {
 		if(seleccionada!=null){
 			//El movimiento puede ser mas fluido recalculando el pto
-			
-			/*Verificamos que no sea de la paleta si no muevase!*/
-			if(!seleccionada.getEspaleta())
-			{
-				this.cambiarPosicion(seleccionada, ev.getPoint());
-				vista.repaint();
-				
-			}
+			this.cambiarPosicion(seleccionada, ev.getPoint());
+			vista.repaint();
 		}
 	}
 

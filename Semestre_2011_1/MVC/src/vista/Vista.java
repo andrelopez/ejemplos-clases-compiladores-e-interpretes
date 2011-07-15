@@ -1,13 +1,17 @@
 package vista;
 
 import java.awt.BasicStroke;
+import java.awt.Button;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -19,19 +23,32 @@ import modelo.Modelo;
 import modelo.Figura;
 
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 import controlador.Controlador;
 
 
-public class Vista extends JPanel {
+public class Vista extends JPanel implements ActionListener{
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
 	private int posini=100;
+	private int icono=0;
 	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
 	
-	Image image1;
+	JLabel bnuevo;
+	
+	Image paleta;
+	Image nuevo;
+	Image guardar;
+	Image cargar;
+	Image compilador;
+	Image enlazador;
+	Image maquina;
+	Image vmaquina;
+	Image interprete;
+	Image programa;
+	
 	public Vista(Dimension size, Modelo modelo){
 		super();
 		this.modelo=modelo;
@@ -42,7 +59,10 @@ public class Vista extends JPanel {
 
 		//Mejorable al 1000% solo por simplificacion realizado de esta forma
 		MouseController mouseControl = new MouseController() {
-			public void mouseClicked(MouseEvent event) {}
+			public void mouseClicked(MouseEvent event) {
+				icono = ( ( event.getY() - 50 ) / 50 ) + 1;
+				System.out.println(icono);
+			}
 			public void mouseEntered(MouseEvent event) {}
 			public void mouseExited(MouseEvent event) {}
 			public void mouseMoved(MouseEvent event) {}
@@ -56,8 +76,26 @@ public class Vista extends JPanel {
 		this.addMouseListener(mouseControl);
 		this.addMouseMotionListener(mouseControl);
 		
-		try { 
-    		image1 = ImageIO.read(new File("image/menu.png")); }
+		try {  
+			this.setLayout(null);
+			bnuevo = new JLabel(new ImageIcon("images/nuevo.png"));
+			bnuevo.setBounds(15, 15, 45, 45);
+			bnuevo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			
+			this.add(bnuevo);
+			
+    		paleta = ImageIO.read(new File("image/paleta.png"));
+    		nuevo = ImageIO.read(new File("image/nuevo.png"));
+    		guardar = ImageIO.read(new File("image/guarda.png"));
+    		cargar = ImageIO.read(new File("image/abre.png"));
+    		compilador = ImageIO.read(new File("image/Tm.png"));
+    		enlazador = ImageIO.read(new File("image/Tm.png"));
+    		interprete = ImageIO.read(new File("image/Im.png"));
+    		maquina = ImageIO.read(new File("image/Mm.png"));
+    		vmaquina = ImageIO.read(new File("image/Mm.png"));
+    		programa = ImageIO.read(new File("image/Pm.png"));
+    		
+		}
         catch(Exception e) {
             e.printStackTrace();
             throw new RuntimeException("No se puede abrir el archivo ");
@@ -69,27 +107,32 @@ public class Vista extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		pintarTodo(g2);
 	}
-	
 	private void pintarTodo(Graphics2D g){
 		for (Figura elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
 		
-		 g.drawImage(image1,0,0,null);
-			
-
-		g.setStroke(new BasicStroke(10f)); //Grosor de 10 pixeles
-		g.setColor(Color.darkGray);
-	
-		g.fill3DRect(0, posini-51, 100, 5, true);
-		g.fill3DRect(0, posini, 100, 5, true);
-		
-		 g.drawImage(image1,0,0,null);
-		
-		
+		g.drawImage(paleta,0,0,null);
+		g.drawImage(nuevo,25,15,null);
+		g.drawImage(guardar,25,65,null);
+		g.drawImage(cargar,25,115,null);
+		g.drawImage(compilador,10,180,null);
+		g.drawImage(enlazador,10,230,null);
+		g.drawImage(interprete,25,280,null);
+		g.drawImage(maquina,25,330,null);
+		g.drawImage(vmaquina,25,380,null);
+		g.drawImage(programa,25,430,null);
 	}
-
+	
+    public void eVmouseClicked(MouseEvent ev) {
+		
+		if(controlador!=null)
+		{
+			controlador.eVmousePressed(ev);
+		}
+	}
 	public void eVmousePressed(MouseEvent ev) {
+		
 		if(controlador!=null)
 		{
 			controlador.eVmousePressed(ev);
@@ -108,6 +151,12 @@ public class Vista extends JPanel {
 		{
 			controlador.eVmouseReleased(ev);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
