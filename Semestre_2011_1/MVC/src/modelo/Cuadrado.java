@@ -2,15 +2,28 @@ package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 public class Cuadrado extends Figura {
 
 	private int ancho;
+	private Image image1;
 	public Cuadrado(Point posicion, int ancho){
 		this.posicion=posicion;
 		this.ancho=ancho;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
+		
+		try {  
+    		image1 = ImageIO.read(new File("image/I.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 	}
 	
 	public void setAncho(int ancho){
@@ -31,11 +44,9 @@ public class Cuadrado extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
-		g.setColor(Color.BLUE);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getAncho());
+		g.drawImage(image1,this.getX(),this.getY(),null);		
 		if(this.getSeleccionada()){
-			g.setColor(Color.RED);
-			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);
+			g.drawImage(image1,this.getX(),this.getY(),null);
 		}
 	}	
 }

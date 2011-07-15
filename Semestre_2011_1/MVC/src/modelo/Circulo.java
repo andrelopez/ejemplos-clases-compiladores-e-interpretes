@@ -2,11 +2,16 @@ package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 public class Circulo extends Figura {
 
 	private int radio;
+	private Image image1;
 	
 	public void setRadio(int ancho){
 		this.radio=ancho;
@@ -20,6 +25,13 @@ public class Circulo extends Figura {
 		this.posicion=posicion;
 		this.radio=radio;
 		this.seleccionada=false;  //Deberia estar en el constructor de figura pero por simplicidad
+		try {  
+    		image1 = ImageIO.read(new File("image/P.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 	}
 	
 	@Override
@@ -32,25 +44,9 @@ public class Circulo extends Figura {
 
 	@Override
 	public void dibujar(Graphics g) {
-		float punto=this.getRadio()/1.5f;
-		g.setColor(Color.WHITE);
-		/*Dibujando el programa*/
-		g.fill3DRect(this.getX(), this.getY(), this.getRadio(), this.getRadio(),true);
-		g.fillOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
-	
-		
-		g.setColor(Color.BLACK);
-		g.drawRect(this.getX(), this.getY(), this.getRadio(), this.getRadio());
-		//g.drawOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
-		
-		
+		g.drawImage(image1,this.getX(),this.getY(),null);		
 		if(this.getSeleccionada()){
-			g.setColor(Color.red);
-			g.draw3DRect(this.getX(), this.getY(), this.getRadio(), this.getRadio(),true);
-		//	g.drawOval(this.getX()-2, this.getY()-30, this.getRadio()+5, this.getRadio()+5);
-		
-			
-			
+			g.drawImage(image1,this.getX(),this.getY(),null);
 		}
 	}
 

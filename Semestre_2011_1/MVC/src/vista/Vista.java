@@ -33,7 +33,7 @@ public class Vista extends JPanel implements ActionListener{
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
 	private int posini=100;
-	private int icono=0;
+	private int icono=0,xmouse,ymouse;
 	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
 	
 	JLabel bnuevo;
@@ -48,6 +48,7 @@ public class Vista extends JPanel implements ActionListener{
 	Image vmaquina;
 	Image interprete;
 	Image programa;
+	private boolean PresionoPaleta=false,MouseIcon=false;
 	
 	public Vista(Dimension size, Modelo modelo){
 		super();
@@ -60,12 +61,17 @@ public class Vista extends JPanel implements ActionListener{
 		//Mejorable al 1000% solo por simplificacion realizado de esta forma
 		MouseController mouseControl = new MouseController() {
 			public void mouseClicked(MouseEvent event) {
-				icono = ( ( event.getY() - 50 ) / 50 ) + 1;
-				System.out.println(icono);
+				
+				eVmouseClicked(event);
 			}
 			public void mouseEntered(MouseEvent event) {}
 			public void mouseExited(MouseEvent event) {}
-			public void mouseMoved(MouseEvent event) {}
+			public void mouseMoved(MouseEvent event) {
+				xmouse=event.getX();
+				ymouse=event.getY();
+				eVmouseMoved(event);
+				
+			}
 			public void mousePressed(MouseEvent event) {
 			    eVmousePressed(event);	}
 			public void mouseReleased(MouseEvent event) {
@@ -101,6 +107,22 @@ public class Vista extends JPanel implements ActionListener{
             throw new RuntimeException("No se puede abrir el archivo ");
         }
 	}
+	public boolean getpresion()
+	{
+		return this.PresionoPaleta;
+	}
+	public void setpresion(boolean quepaso, int ico,boolean mouse)
+	{
+		this.PresionoPaleta=quepaso;
+		this.MouseIcon=mouse;
+		this.icono=ico;
+		System.out.println(" "+icono);
+	}
+	public int geticono()
+	{
+		return this.icono;
+		
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -116,19 +138,44 @@ public class Vista extends JPanel implements ActionListener{
 		g.drawImage(nuevo,25,15,null);
 		g.drawImage(guardar,25,65,null);
 		g.drawImage(cargar,25,115,null);
-		g.drawImage(compilador,10,180,null);
+	
 		g.drawImage(enlazador,10,230,null);
 		g.drawImage(interprete,25,280,null);
 		g.drawImage(maquina,25,330,null);
 		g.drawImage(vmaquina,25,380,null);
 		g.drawImage(programa,25,430,null);
+		//Dibujar en la punta del muse 
+		if(this.PresionoPaleta)
+		{
+			if(this.icono==5)//Espicharon Compilador
+			{
+				g.drawString("Compilador", xmouse, ymouse);
+				
+			}
+			if(this.icono==6)//Espicharon Compilador
+			{
+				g.drawString("Interprete", xmouse, ymouse);
+				
+			}
+			if(this.icono==7)//Espicharon Compilador
+			{
+				g.drawString("Maquina", xmouse, ymouse);
+				
+			}
+			if(this.icono==9)//Espicharon Compilador
+			{
+				g.drawString("Programa", xmouse, ymouse);
+				
+			}
+			
+		}
 	}
 	
     public void eVmouseClicked(MouseEvent ev) {
 		
 		if(controlador!=null)
 		{
-			controlador.eVmousePressed(ev);
+			controlador.eVmouseClicked(ev);
 		}
 	}
 	public void eVmousePressed(MouseEvent ev) {
@@ -150,6 +197,12 @@ public class Vista extends JPanel implements ActionListener{
 		if(controlador!=null)
 		{
 			controlador.eVmouseReleased(ev);
+		}
+	}
+	public void eVmouseMoved (MouseEvent ev) {
+		if(controlador!=null)
+		{
+			controlador.eVmouseMoved(ev);
 		}
 	}
 

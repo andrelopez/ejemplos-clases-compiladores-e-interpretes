@@ -1,8 +1,12 @@
 package modelo;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Color;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 public class DibujoT extends Figura{
 
@@ -11,11 +15,20 @@ public class DibujoT extends Figura{
 
 	private int ancho;
 	private int alto;
+	private Image image1;
 	public DibujoT(Point posicion, int ancho,int alto){
 		this.posicion=posicion;
 		this.alto=alto;
 		this.ancho=ancho;
-		this.seleccionada=false;  
+		this.seleccionada=false;
+		
+		try {  
+    		image1 = ImageIO.read(new File("image/T.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 	}
 	
 	public void setAncho(int ancho){
@@ -44,18 +57,9 @@ public class DibujoT extends Figura{
 
 	@Override
 	public void dibujar(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.fill3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
-		g.fill3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
-		/*Borde para separar*/
-		g.setColor(Color.WHITE);
-		g.draw3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
-		g.draw3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
-		
+		g.drawImage(image1,this.getX(),this.getY(),null);		
 		if(this.getSeleccionada()){
-			g.setColor(Color.RED);
-			g.draw3DRect(this.getX(), this.getY(), this.getAncho(), this.getAlto(),true);
-			g.draw3DRect(this.getX()+(this.getAncho()/3), this.getY()+(this.getAlto()), this.getAlto()+10, this.getAlto(),true);
+			g.drawImage(image1,this.getX(),this.getY(),null);
 		}
 	}
 
