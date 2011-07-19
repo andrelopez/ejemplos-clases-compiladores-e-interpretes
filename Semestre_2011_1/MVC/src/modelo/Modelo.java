@@ -45,4 +45,16 @@ public class Modelo {
 		}
 		
 	}
+	static int i=0;
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Modelo "+i++;
+	}
+	
+	public void recargar(Modelo x)
+	{
+		listaFiguras=x.listaFiguras;
+		
+	}
 }
