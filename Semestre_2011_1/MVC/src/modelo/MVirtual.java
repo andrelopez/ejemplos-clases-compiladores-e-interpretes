@@ -13,10 +13,14 @@ public class MVirtual extends Figura {
 
 	private int ancho;
 	private Image image1;
+	private String cOrigen;
+	private String cDestino;
 	
-	public MVirtual(Point posicion, int ancho){
+	public MVirtual(Point posicion, int ancho, String entra, String sale){
 		this.posicion=posicion;
 		this.ancho=ancho;
+		this.cOrigen = entra;
+		this.cDestino = sale;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
 		try {  
     		image1 = ImageIO.read(new File("image/M.png"));
@@ -46,9 +50,13 @@ public class MVirtual extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
-		g.drawImage(image1,this.getX(),this.getY(),null);		
+		g.drawImage(image1,this.getX(),this.getY(),null);
+		g.drawString(this.cOrigen, this.getX()+10, this.getY()+10);
+		g.drawString(this.cDestino, this.getX()+10, this.getY()+30);
 		if(this.getSeleccionada()){
 			g.drawImage(image1,this.getX(),this.getY(),null);
+			g.drawString(this.cOrigen, this.getX()+10, this.getY()+10);
+			g.drawString(this.cDestino, this.getX()+10, this.getY()+30);
 		}
 	}	
 }

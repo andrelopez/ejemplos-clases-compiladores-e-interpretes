@@ -4,30 +4,30 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Polygon;
 import java.io.File;
 
 import javax.imageio.ImageIO;
 
-public class Cuadrado extends Figura {
+public class Maquina extends Figura {
 
 	private int ancho;
 	private Image image1;
-	private String De, Para;
+	private String Plataforma;
 	
-	public Cuadrado(Point posicion, int ancho, String de, String para){
+	public Maquina(Point posicion, int ancho, String plataforma){
 		this.posicion=posicion;
 		this.ancho=ancho;
+		this.Plataforma = plataforma;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
-		this.De = de;
-		this.Para = para;
-		
 		try {  
-    		image1 = ImageIO.read(new File("image/I.png"));
+    		image1 = ImageIO.read(new File("image/M.png"));
 		}
         catch(Exception e) {
             e.printStackTrace();
             throw new RuntimeException("No se puede abrir el archivo ");
         }
+		
 	}
 	
 	public void setAncho(int ancho){
@@ -49,12 +49,10 @@ public class Cuadrado extends Figura {
 	public void dibujar(Graphics g)
 	{
 		g.drawImage(image1,this.getX(),this.getY(),null);
-		g.drawString(this.De ,this.getX() + 10, this.getY() + 10);
-		g.drawString(this.Para ,this.getX() + 10, this.getY() + 30);
+		g.drawString(this.Plataforma, this.getX()+10, this.getY()+20);
 		if(this.getSeleccionada()){
 			g.drawImage(image1,this.getX(),this.getY(),null);
-			g.drawString(this.De ,this.getX() + 10, this.getY() + 10);
-			g.drawString(this.Para ,this.getX() + 10, this.getY() + 30);
+			g.drawString(this.Plataforma, this.getX()+10, this.getY()+20);
 		}
 	}	
 }

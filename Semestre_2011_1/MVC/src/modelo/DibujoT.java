@@ -19,8 +19,7 @@ public class DibujoT extends Figura {
 	private Image image1;
 	private String compilador, acodigo, escritoen;
 
-	public DibujoT(Point posicion, int ancho, int alto, String comp,
-			String acodi, String escrito) {
+	public DibujoT(Point posicion, int ancho, int alto, String comp, String acodi, String escrito) {
 		this.posicion = posicion;
 		this.alto = alto;
 		this.ancho = ancho;
@@ -52,11 +51,6 @@ public class DibujoT extends Figura {
 		return alto;
 	}
 
-	/*
-	 * Simplemente agrege alto a la clase y pinte un cuadra mas pequeño en el
-	 * centro
-	 */
-
 	@Override
 	public boolean dentroFigura(Point p) {
 		int difX = Math.abs(p.x - (posicion.x + (ancho / 2)));
@@ -73,8 +67,7 @@ public class DibujoT extends Figura {
 
 		g.drawString(this.acodigo, this.getX() + ancho - 20, this.getY() + 10);
 
-		g.drawString(this.escritoen, this.getX() + ancho / 2, this.getY()
-				+ alto + 10);
+		g.drawString(this.escritoen, this.getX() + ancho / 2, this.getY()+ alto + 10);
 		if (this.getSeleccionada()) {
 
 			g.drawImage(image1, this.getX(), this.getY(), null);

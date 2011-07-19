@@ -161,17 +161,22 @@ public class Vista extends JPanel implements ActionListener{
 				g.drawString("Compilador", xmouse, ymouse);
 				
 			}
-			if(this.icono==6)//Espicharon Compilador
+			if(this.icono==6)//Espicharon Interprete
 			{
 				g.drawString("Interprete", xmouse, ymouse);
 				
 			}
-			if(this.icono==7)//Espicharon Compilador
+			if(this.icono==7)//Espicharon maquina
 			{
 				g.drawString("Maquina", xmouse, ymouse);
 				
 			}
-			if(this.icono==9)//Espicharon Compilador
+			if(this.icono==8)//Espicharon maquina virtual
+			{
+				g.drawString("Maquina Virtual", xmouse, ymouse);
+				
+			}
+			if(this.icono==9)//Espicharon programa
 			{
 				g.drawString("Programa", xmouse, ymouse);
 				
