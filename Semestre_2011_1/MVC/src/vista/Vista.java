@@ -48,7 +48,16 @@ public class Vista extends JPanel implements ActionListener{
 	Image vmaquina;
 	Image interprete;
 	Image programa;
+	
 	private boolean PresionoPaleta=false,MouseIcon=false;
+	public int getxmouse()
+	{
+		return this.xmouse;
+	}
+	public int getymouse()
+	{
+		return this.ymouse;
+	}
 	
 	public Vista(Dimension size, Modelo modelo){
 		super();
@@ -111,10 +120,9 @@ public class Vista extends JPanel implements ActionListener{
 	{
 		return this.PresionoPaleta;
 	}
-	public void setpresion(boolean quepaso, int ico,boolean mouse)
+	public void setpresion(boolean quepaso, int ico)
 	{
 		this.PresionoPaleta=quepaso;
-		this.MouseIcon=mouse;
 		this.icono=ico;
 		System.out.println(" "+icono);
 	}
@@ -133,7 +141,8 @@ public class Vista extends JPanel implements ActionListener{
 		for (Figura elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
-		
+		g.setColor(Color.black);
+		g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
 		g.drawImage(paleta,0,0,null);
 		g.drawImage(nuevo,25,15,null);
 		g.drawImage(guardar,25,65,null);
