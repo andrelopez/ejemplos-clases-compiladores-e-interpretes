@@ -48,6 +48,15 @@ public class Maquina extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
+		if(image1!=null)
+		try {  
+    		image1 = ImageIO.read(new File("image/M.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
+	
 		g.drawImage(image1,this.getX(),this.getY(),null);
 		g.drawString(this.Plataforma, this.getX()+10, this.getY()+20);
 		if(this.getSeleccionada()){

@@ -7,6 +7,7 @@ import java.util.List;
 public class Modelo {
 	
 	private List<Figura> listaFiguras;
+	public String nombre;
 	public Modelo(){
 		listaFiguras = new ArrayList<Figura>();
 	}
@@ -43,6 +44,31 @@ public class Modelo {
 			}
 			cont++;
 		}
+		
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nombre;
+	}
+	
+	public void recargar(Modelo x)
+	{
+		for(int i=0;i<listaFiguras.size();i++)
+		{	
+			
+			listaFiguras.remove(0);
+			
+		}
+		System.out.println("Nuevo tamañano "+ listaFiguras.size());
+		for(Figura f:x.listaFiguras)
+		{	
+			listaFiguras.add(f);
+			
+		}
+		listaFiguras=x.listaFiguras;
+		System.out.println(listaFiguras);
 		
 	}
 }

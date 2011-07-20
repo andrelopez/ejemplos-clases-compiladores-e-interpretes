@@ -48,6 +48,14 @@ public class Cuadrado extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
+		if(image1!=null)
+		try {  
+    		image1 = ImageIO.read(new File("image/I.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 		g.drawImage(image1,this.getX(),this.getY(),null);
 		g.drawString(this.De ,this.getX() + 10, this.getY() + 10);
 		g.drawString(this.Para ,this.getX() + 10, this.getY() + 30);

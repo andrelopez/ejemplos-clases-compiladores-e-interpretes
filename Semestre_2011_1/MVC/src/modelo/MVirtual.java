@@ -50,6 +50,14 @@ public class MVirtual extends Figura {
 	@Override
 	public void dibujar(Graphics g)
 	{
+		if(image1!=null)
+		try {  
+    		image1 = ImageIO.read(new File("image/M.png"));
+		}
+        catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("No se puede abrir el archivo ");
+        }
 		g.drawImage(image1,this.getX(),this.getY(),null);
 		g.drawString(this.cOrigen, this.getX()+10, this.getY()+10);
 		g.drawString(this.cDestino, this.getX()+10, this.getY()+30);

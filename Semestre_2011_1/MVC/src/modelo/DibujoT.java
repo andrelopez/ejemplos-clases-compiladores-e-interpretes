@@ -16,9 +16,9 @@ public class DibujoT extends Figura {
 
 	private int ancho;
 	private int alto;
-	private Image image1;
+	static private Image image1;
 	private String compilador, acodigo, escritoen;
-
+	
 	public DibujoT(Point posicion, int ancho, int alto, String comp, String acodi, String escrito) {
 		this.posicion = posicion;
 		this.alto = alto;
@@ -60,8 +60,17 @@ public class DibujoT extends Figura {
 
 	@Override
 	public void dibujar(Graphics g) {
-		g.setColor(Color.gray);
+		if(image1!=null)
+		try {
+			image1 = ImageIO.read(new File("image/T.png"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("No se puede abrir el archivo ");
+		}
+		g.setColor(Color.blue);
 		g.drawImage(image1, this.getX(), this.getY(), null);
+		//g.fillRect(this.getX(), this.getY(), 100, 100);
+		g.setColor(Color.gray);
 		g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
 		g.drawString(this.compilador, this.getX() + 10, this.getY() + 10);
 

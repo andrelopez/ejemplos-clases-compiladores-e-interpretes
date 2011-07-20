@@ -7,8 +7,13 @@ import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,12 +75,14 @@ public class Controlador {
 	private Label p_label1, p_label2;
 	private JButton boton_p;
 	private boolean envio_p = false;
+		
 	
 	public Controlador(Modelo modelo, Vista vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 		seleccionada = null;
 		punto = new Point(10, 57);
+	
 		
 		/* Ventana emergente para el compilador */
 		n_compilador = new JDialog();
@@ -237,6 +244,8 @@ public class Controlador {
 		contenedor_p.add(p_label2);
 		contenedor_p.add(p_data2);
 		contenedor_p.add(boton_p);
+		
+		
 	}
 
 	public Figura obtenerFigura(Point posicion) {
@@ -326,6 +335,27 @@ public class Controlador {
 
 				}
 			}
+			if (vista.geticono() == 2)// Guardar
+			{
+		        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "prueba2");
+		        try {
+		            modelo.nombre=JOptionPane.showInputDialog(vista, "Nombre del archivo a guardar");
+		            
+		            db.store(modelo);
+		            
+		        } finally {
+		            db.close();
+		        }
+
+		        // accessDb4o
+			}
+			if (vista.geticono() == 3)// Cargar
+			{
+
+				//Codigo de cargar..
+				
+			}
+			
 			if (vista.geticono() == 6)// Interprete
 			{
 				n_interprete.setLocation(this.vista.getxmouse(), this.vista.getymouse());
