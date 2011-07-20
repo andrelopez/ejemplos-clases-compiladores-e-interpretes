@@ -351,8 +351,24 @@ public class Controlador {
 			}
 			if (vista.geticono() == 3)// Cargar
 			{
-
-				//Codigo de cargar..
+				
+		        ObjectContainer db1 = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "prueba2");
+		        try {
+		        			            
+		            ObjectSet<Modelo> lista=db1.query(Modelo.class);
+		            System.out.println(lista.size());
+		            for(Modelo m:lista){
+		            	System.out.println("MODELO "+m);
+		            }
+		            
+		            Modelo m1=(Modelo) JOptionPane.showInputDialog(vista, "Mensaje", "Titulo", JOptionPane.INFORMATION_MESSAGE, null, lista.toArray(), lista.get(0));
+		            if(m1!=null)
+		            modelo.recargar(m1);
+		            vista.repaint();
+		            
+		        } finally {
+		            db1.close();
+		        }
 				
 			}
 			
