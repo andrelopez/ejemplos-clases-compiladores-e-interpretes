@@ -282,12 +282,12 @@ public class Controlador {
 			// selecciona figura
 			seleccionada = this.getFiguraEn(ev.getPoint());
 		} else if (SwingUtilities.isRightMouseButton(ev)) { // click boton
-			// izquierdo añade
+			// izquierdo aï¿½ade
 			// figura tipo
 			// Dibujo T
 			// this.anyadirFigura(new MVirtual(ev.getPoint(),80));
 		} else if (SwingUtilities.isMiddleMouseButton(ev))// click boton medio
-		// añade figura tipo
+		// aï¿½ade figura tipo
 		// circulo
 		{
 			// this.anyadirFigura(new Circulo(ev.getPoint(),40));
@@ -317,25 +317,7 @@ public class Controlador {
 		if (vista.getpresion() == false && ev.getX() < 80) {// La magia dice que
 			// paleta espicho
 			vista.setpresion(true, ((ev.getY() - 20) / 50) + 1);
-
-		}
-		if (vista.getpresion() && ev.getX() > 90) // Dibuja lo q tenga q dibujar
-		{
-			if (vista.geticono() == 5) {// Compilador
-				
-				n_compilador.setLocation(this.vista.getxmouse(), this.vista.getymouse());
-				n_compilador.setVisible(true);
-				
-				if (envio_c) {
-					this.anyadirFigura(new DibujoT(ev.getPoint(), 100, 40, c_data1.getText(), c_data2.getText(), c_data3.getText()));
-					envio_c = false;
-					c_data1.setText("");
-					c_data2.setText("");
-					c_data3.setText("");
-
-				}
-			}
-			if (vista.geticono() == 2)// Guardar
+                                        if (vista.geticono() == 2)// Guardar
 			{
 		        ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), "prueba2");
 		        try {
@@ -346,7 +328,7 @@ public class Controlador {
 		        } finally {
 		            db.close();
 		        }
-
+                                        vista.setpresion(false, 0);
 		        // accessDb4o
 			}
 			if (vista.geticono() == 3)// Cargar
@@ -369,8 +351,27 @@ public class Controlador {
 		        } finally {
 		            db1.close();
 		        }
-				
+			vista.setpresion(false, 0);	
 			}
+		}
+                            
+		if (vista.getpresion() && ev.getX() > 90) // Dibuja lo q tenga q dibujar
+		{
+			if (vista.geticono() == 5) {// Compilador
+				
+				n_compilador.setLocation(this.vista.getxmouse(), this.vista.getymouse());
+				n_compilador.setVisible(true);
+				
+				if (envio_c) {
+					this.anyadirFigura(new DibujoT(ev.getPoint(), 100, 40, c_data1.getText(), c_data2.getText(), c_data3.getText()));
+					envio_c = false;
+					c_data1.setText("");
+					c_data2.setText("");
+					c_data3.setText("");
+
+				}
+			}
+			
 			
 			if (vista.geticono() == 6)// Interprete
 			{
