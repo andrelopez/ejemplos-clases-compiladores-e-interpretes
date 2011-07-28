@@ -56,6 +56,8 @@ public class Maquina extends Figura {
             e.printStackTrace();
             throw new RuntimeException("No se puede abrir el archivo ");
         }
+                    g.setColor(Color.gray);
+		g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
 	
 		g.drawImage(image1,this.getX(),this.getY(),null);
 		g.drawString(this.Plataforma, this.getX()+10, this.getY()+20);

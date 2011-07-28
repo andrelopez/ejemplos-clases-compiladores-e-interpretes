@@ -19,7 +19,7 @@ public class Figuras {
 	public static void main(String[] args) {
 		try{
 			final JFrame frame = new JFrame();
-			frame.setTitle("Ejemplo Modelo Vista Controlador (MVC) Compíladores e Interpretes UNET");
+			frame.setTitle("Modelo T");
 			//Set the window initial Size & default close operation
 			frame.setVisible(true);
 			Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();

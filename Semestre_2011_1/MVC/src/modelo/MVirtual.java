@@ -58,7 +58,10 @@ public class MVirtual extends Figura {
             e.printStackTrace();
             throw new RuntimeException("No se puede abrir el archivo ");
         }
-		g.drawImage(image1,this.getX(),this.getY(),null);
+		
+                    g.setColor(Color.gray);
+		g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
+                g.drawImage(image1,this.getX(),this.getY(),null);
 		g.drawString(this.cOrigen, this.getX()+10, this.getY()+10);
 		g.drawString(this.cDestino, this.getX()+10, this.getY()+30);
 		if(this.getSeleccionada()){

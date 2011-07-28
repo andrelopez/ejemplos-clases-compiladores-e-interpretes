@@ -100,7 +100,7 @@ public class Vista extends JPanel implements ActionListener{
 			this.add(bnuevo);
 			
     		paleta = ImageIO.read(new File("image/paleta.png"));
-    		nuevo = ImageIO.read(new File("image/nuevo.png"));
+    		nuevo = ImageIO.read(new File("image/b.png"));
     		guardar = ImageIO.read(new File("image/guarda.png"));
     		cargar = ImageIO.read(new File("image/abre.png"));
     		compilador = ImageIO.read(new File("image/Tm.png"));
@@ -156,7 +156,13 @@ public class Vista extends JPanel implements ActionListener{
 		//Dibujar en la punta del muse 
 		if(this.PresionoPaleta)
 		{
-			if(this.icono==5)//Espicharon Compilador
+			if(this.icono==1)//Espicharon Compilador
+			{
+				g.drawImage(nuevo,xmouse,ymouse,null);
+				
+			}
+                    
+                                            if(this.icono==5)//Espicharon Compilador
 			{
 				g.drawString("Compilador", xmouse, ymouse);
 				

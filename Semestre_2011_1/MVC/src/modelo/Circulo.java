@@ -79,10 +79,16 @@ public class Circulo extends Figura {
             e.printStackTrace();
             throw new RuntimeException("No se puede abrir el archivo ");
         }
+                
+                g.setColor(Color.gray);
+		g.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
 		g.drawImage(image1,this.getX(),this.getY(),null);
-		g.drawString(this.programa, this.getX()+10, this.getY()+15);
+		g.drawString("a", this.getX()+10, this.getY()+15);
+                        g.drawString("b", this.getX()+10, this.getY()+60);
 		if(this.getSeleccionada()){
 			g.drawImage(image1,this.getX(),this.getY(),null);
+                                        
+                                          g.drawString("b", this.getX()+10, this.getY()+60);
 		}
 	}
 

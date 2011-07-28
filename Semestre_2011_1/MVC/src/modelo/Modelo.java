@@ -24,6 +24,10 @@ public class Modelo {
 	
 		listaFiguras.add(f);
 	}
+            public void eliminarFigura(Figura f){
+	
+		listaFiguras.remove(f);
+	}
 	
 	public Figura getFiguraEn(Point p){
 		for (Figura elemento : getListado()) {
@@ -61,7 +65,7 @@ public class Modelo {
 			listaFiguras.remove(0);
 			
 		}
-		System.out.println("Nuevo tamañano "+ listaFiguras.size());
+		System.out.println("Nuevo tamaï¿½ano "+ listaFiguras.size());
 		for(Figura f:x.listaFiguras)
 		{	
 			listaFiguras.add(f);

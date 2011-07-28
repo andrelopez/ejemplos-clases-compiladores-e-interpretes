@@ -271,6 +271,9 @@ public class Controlador {
 	public void anyadirFigura(Figura f) {
 		modelo.anyadirFigura(f);
 	}
+        public void elminarFigura(Figura f) {
+		modelo.eliminarFigura(f);
+	}
 
 	public Figura getFiguraEn(Point p) {
 		return modelo.getFiguraEn(p);
@@ -357,7 +360,15 @@ public class Controlador {
                             
 		if (vista.getpresion() && ev.getX() > 90) // Dibuja lo q tenga q dibujar
 		{
-			if (vista.geticono() == 5) {// Compilador
+                                    if(vista.geticono()==1)
+                                    {
+                                      seleccionada = this.getFiguraEn(ev.getPoint());  
+                                    this.elminarFigura(seleccionada);
+                                    
+                                    }
+                    
+                    
+                                        if (vista.geticono() == 5) {// Compilador
 				
 				n_compilador.setLocation(this.vista.getxmouse(), this.vista.getymouse());
 				n_compilador.setVisible(true);
